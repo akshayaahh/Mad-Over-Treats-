@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Mad for Treats</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --mad-blue: #12A8C9;
+    }
+    .text-mad-blue { color: var(--mad-blue); }
+    .bg-mad-blue { background-color: var(--mad-blue); }
+  </style>
+</head>
+<body class="bg-blue-50 min-h-screen text-gray-800">
+  <div class="max-w-2xl mx-auto px-6 py-12 bg-white mt-10 rounded-xl shadow">
+    <h1 class="text-3xl font-bold text-mad-blue mb-6">Contact Us</h1>
+    <p class="mb-6">Have questions, feedback, or just want to say hello? We’d love to hear from you!</p>
+
+    <form class="space-y-4" onsubmit="event.preventDefault(); alert('Thank you for reaching out! We'll get back to you soon.');">
+      <div>
+        <label for="name" class="block font-medium">Your Name</label>
+        <input type="text" id="name" name="name" class="w-full mt-1 p-2 border border-gray-300 rounded" required>
+      </div>
+
+      <div>
+        <label for="email" class="block font-medium">Email</label>
+        <input type="email" id="email" name="email" class="w-full mt-1 p-2 border border-gray-300 rounded" required>
+      </div>
+
+      <div>
+        <label for="message" class="block font-medium">Message</label>
+        <textarea id="message" name="message" rows="4" class="w-full mt-1 p-2 border border-gray-300 rounded" required></textarea>
+      </div>
+
+      <button type="submit" class="bg-mad-blue text-white px-6 py-2 rounded hover:bg-cyan-700">Send Message</button>
+    </form>
+
+    <div class="mt-10 text-sm text-gray-500">
+      <p><strong>Email:</strong> hello@madovertreats.com</p>
+      <p><strong>Phone:</strong> +91 98765 43210</p>
+      <p><strong>Instagram:</strong> <a href="https://instagram.com/madovertreats" class="text-mad-blue underline" target="_blank">@madovertreats</a></p>
+    </div>
+  </div>
+</body>
+</html>
