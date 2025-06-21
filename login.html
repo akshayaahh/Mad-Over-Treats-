@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login / Sign Up - Mad Over Treats</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Fredoka', sans-serif; }
+    :root {
+      --mad-blue: #12A8C9;
+    }
+    .text-mad-blue { color: var(--mad-blue); }
+    .bg-mad-blue { background-color: var(--mad-blue); }
+    .hover\:bg-mad-blue-dark:hover { background-color: #0f8eb0; }
+  </style>
+</head>
+<body class="bg-blue-50 flex items-center justify-center min-h-screen">
+  <div class="bg-white shadow-lg rounded-xl p-8 w-full max-w-md">
+    <div class="text-center mb-6">
+      <img src="logo.png" alt="Logo" class="w-16 h-16 mx-auto rounded-full mb-2">
+      <h2 class="text-xl font-semibold text-mad-blue">Welcome to Mad Over Treats</h2>
+    </div>
+
+    <div id="auth-container">
+      <div id="login-form">
+        <input type="email" id="login-email" placeholder="Email" class="w-full mb-3 px-4 py-2 border rounded">
+        <input type="password" id="login-password" placeholder="Password" class="w-full mb-3 px-4 py-2 border rounded">
+        <button onclick="login()" class="w-full bg-mad-blue text-white py-2 rounded hover:bg-mad-blue-dark">Login</button>
+        <p class="text-center text-sm mt-4">Don't have an account? <span onclick="toggleAuth()" class="text-mad-blue cursor-pointer underline">Sign up</span></p>
+      </div>
+
+      <div id="signup-form" class="hidden">
+        <input type="text" id="signup-name" placeholder="Full Name" class="w-full mb-3 px-4 py-2 border rounded">
+        <input type="email" id="signup-email" placeholder="Email" class="w-full mb-3 px-4 py-2 border rounded">
+        <input type="password" id="signup-password" placeholder="Password" class="w-full mb-3 px-4 py-2 border rounded">
+        <button onclick="signup()" class="w-full bg-mad-blue text-white py-2 rounded hover:bg-mad-blue-dark">Sign Up</button>
+        <p class="text-center text-sm mt-4">Already have an account? <span onclick="toggleAuth()" class="text-mad-blue cursor-pointer underline">Login</span></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleAuth() {
+      document.getElementById('login-form').classList.toggle('hidden');
+      document.getElementById('signup-form').classList.toggle('hidden');
+    }
+
+    function login() {
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      alert(`Logging in: ${email} / ${password} (MVP only)`);
+    }
+
+    function signup() {
+      const name = document.getElementById('signup-name').value;
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+      alert(`Signing up: ${name} / ${email} (MVP only)`);
+    }
+  </script>
+</body>
+</html>
