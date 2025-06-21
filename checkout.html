@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Mad Over Treats</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Fredoka', sans-serif; }
+    :root {
+      --mad-blue: #12A8C9;
+    }
+    .text-mad-blue { color: var(--mad-blue); }
+    .bg-mad-blue { background-color: var(--mad-blue); }
+    .hover\:bg-mad-blue-dark:hover { background-color: #0f8eb0; }
+  </style>
+</head>
+<body class="bg-blue-50 text-gray-800">
+  <!-- Header -->
+  <header class="bg-white shadow p-4 flex justify-between items-center">
+    <a href="index.html" class="flex items-center space-x-3">
+      <img src="logo.png" alt="Mad for Treats Logo" class="w-12 h-12 rounded-full" />
+      <h1 class="text-2xl font-bold text-mad-blue">Checkout</h1>
+    </a>
+  </header>
+
+  <!-- Checkout Form -->
+  <section class="max-w-xl mx-auto p-6">
+    <h2 class="text-2xl font-bold text-mad-blue mb-4">Order Summary</h2>
+    <div class="bg-white p-4 rounded-xl shadow mb-6">
+      <p class="text-gray-600 mb-2">Product: <span id="productName" class="font-semibold"></span></p>
+      <p class="text-gray-600">Quantity: <span id="productQty" class="font-semibold"></span></p>
+      <p class="text-gray-600 mt-2">Estimated Total: ₹<span id="productTotal">—</span></p>
+    </div>
+
+    <h3 class="text-lg font-semibold mb-2">Delivery Details</h3>
+    <form id="checkoutForm" class="space-y-4">
+      <input type="text" placeholder="Full Name" id="custName" class="w-full border rounded p-2" required>
+      <input type="text" placeholder="Address" id="custAddr" class="w-full border rounded p-2" required>
+      <input type="text" placeholder="City" class="w-full border rounded p-2" required>
+      <input type="text" placeholder="PIN Code" class="w-full border rounded p-2" required>
+      <input type="tel" placeholder="Phone Number" id="custPhone" class="w-full border rounded p-2" required>
+      <div class="flex gap-4">
+        <button type="submit" class="w-full py-2 bg-mad-blue text-white rounded hover:bg-mad-blue-dark">Proceed to Pay</button>
+        <a href="products.html" class="w-full py-2 text-center bg-gray-300 text-gray-700 rounded hover:bg-gray-400">Cancel Checkout</a>
+      </div>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center text-sm text-gray-500 py-6">
+    &copy; 2025 Mad for Treats. All rights reserved.
+  </footer>
+
+  <script>
+    const query = new URLSearchParams(window.location.search);
+    const name = query.get('product')?.replace(/-/g, ' ') || 'No product';
+    const qty = parseInt(query.get('qty')) || 1;
+
+    const productPrices = {
+      'chicken jerky': 199,
+      'peanut butter bites': 249,
+      'pumpkin & oats biscuits': 199,
+      'banana chews': 149,
+      'sweet potato sticks': 179
+    };
+
+    const productName = name.toLowerCase();
+    const price = productPrices[productName] || 0;
+    const total = price * qty;
+
+    document.getElementById('productName').innerText = name;
+    document.getElementById('productQty').innerText = qty;
+    document.getElementById('productTotal').innerText = total;
+
+    document.getElementById('checkoutForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const options = {
+        key: "rzp_test_1DP5mmOlF5G5ag", // Test API Key
+        amount: total * 100, // Amount in paise
+        currency: "INR",
+        name: "Mad Over Treats",
+        description: `Purchase: ${name} x${qty}`,
+        image: "logo.png",
+        handler: function (response) {
+          alert("Payment Successful! ID: " + response.razorpay_payment_id);
+        },
+        prefill: {
+          name: document.getElementById('custName').value,
+          contact: document.getElementById('custPhone').value,
+        },
+        theme: {
+          color: "#12A8C9"
+        }
+      };
+
+      const rzp = new Razorpay(options);
+      rzp.open();
+    });
+  </script>
+</body>
+</html>
