@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - Mad Over Treats</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --mad-blue: #12A8C9;
+    }
+    .text-mad-blue { color: var(--mad-blue); }
+    .bg-mad-blue { background-color: var(--mad-blue); }
+    .hover\:bg-mad-blue-dark:hover { background-color: #0f8eb0; }
+  </style>
+</head>
+<body class="bg-blue-50 min-h-screen p-6">
+  <div class="max-w-5xl mx-auto bg-white p-6 rounded-xl shadow-md grid grid-cols-1 md:grid-cols-3 gap-6">
+
+    <!-- Sidebar -->
+    <aside class="bg-gray-50 p-4 rounded-xl space-y-3 border md:col-span-1">
+      <h2 class="text-lg font-semibold text-mad-blue mb-2">Settings</h2>
+      <a href="profile.html" class="block px-3 py-2 rounded hover:bg-blue-100">👤 Profile</a>
+      <a href="orders.html" class="block px-3 py-2 rounded hover:bg-blue-100">🧾 My Orders</a>
+      <a href="wishlist.html" class="block px-3 py-2 rounded hover:bg-blue-100">💖 Wishlist</a>
+      <a href="#" class="block px-3 py-2 rounded hover:bg-blue-100">🔐 Change Password</a>
+      <a href="#" class="block px-3 py-2 rounded hover:bg-blue-100">✏️ Edit Profile</a>
+      <a href="#" class="block px-3 py-2 rounded hover:bg-blue-100 text-red-600">🚪 Logout</a>
+    </aside>
+
+    <!-- Main Content -->
+    <section class="md:col-span-2">
+      <div class="flex items-center space-x-4 mb-6">
+        <img src="avatar.png" alt="Profile Photo" class="w-20 h-20 rounded-full border">
+        <div>
+          <h2 class="text-xl font-semibold text-mad-blue">Akshaya Shetty</h2>
+          <p class="text-gray-500">akshaya@example.com</p>
+        </div>
+      </div>
+
+      <hr class="my-4">
+
+      <h3 class="text-lg font-semibold mb-2">Saved Info</h3>
+      <div class="space-y-3 text-sm">
+        <div><strong>Phone:</strong> +91 9876543210</div>
+        <div><strong>Address:</strong> 123, Doggy Street, Treat City</div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
