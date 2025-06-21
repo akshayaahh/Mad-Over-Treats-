@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Detail - Mad Over Treats</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --mad-blue: #12A8C9;
+    }
+    .text-mad-blue { color: var(--mad-blue); }
+    .bg-mad-blue { background-color: var(--mad-blue); }
+  </style>
+</head>
+<body class="bg-blue-50 text-gray-800">
+  <div class="max-w-5xl mx-auto p-6">
+    <div class="grid md:grid-cols-2 gap-8 bg-white p-6 rounded-xl shadow">
+      <img id="productImage" src="" alt="Product" class="w-full h-96 object-cover rounded">
+      <div>
+        <h1 id="productName" class="text-3xl font-bold text-mad-blue mb-2">Loading...</h1>
+        <p id="productPrice" class="text-xl mb-4 font-semibold text-gray-700">₹---</p>
+        <button class="bg-mad-blue text-white px-6 py-2 rounded hover:bg-cyan-700">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Customer Reviews -->
+    <div class="bg-white mt-10 p-6 rounded-xl shadow">
+      <h2 class="text-2xl font-bold text-mad-blue mb-4">Customer Reviews</h2>
+      <div id="reviewList" class="space-y-4">
+        <p>No reviews yet. Be the first to review!</p>
+      </div>
+
+      <!-- Review Submission -->
+      <form id="reviewForm" class="mt-6 space-y-4">
+        <input type="text" id="reviewerName" placeholder="Your Name" class="w-full border p-2 rounded" required>
+        <textarea id="reviewText" placeholder="Write a review..." class="w-full border p-2 rounded" required></textarea>
+        <input type="file" id="reviewImage" class="w-full">
+        <button type="submit" class="bg-mad-blue text-white px-4 py-2 rounded">Submit Review</button>
+      </form>
+    </div>
+
+    <!-- Recommended Products -->
+    <div class="mt-10">
+      <h2 class="text-2xl font-bold text-mad-blue mb-4">You May Also Like</h2>
+      <div id="recommendations" class="flex gap-4 overflow-x-auto"></div>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get("name") || "Unknown Product";
+
+    const products = {
+      "Chicken Jerky": { price: 199, image: "images/chicken-jerky.jpg" },
+      "Lamb Bites": { price: 289, image: "images/lamb-bites.jpg" },
+      "Beef Strips": { price: 349, image: "images/beef-strips.jpg" },
+      "Peanut Butter Bites": { price: 249, image: "images/peanut-butter-bites.jpg" },
+      "Pumpkin & Oats Biscuits": { price: 199, image: "images/pumpkin-biscuits.jpg" },
+      "Banana Chews": { price: 149, image: "images/banana-chews.jpg" },
+      "Combo Treat Box": { price: 399, image: "images/combo-box.jpg" }
+    };
+
+    if (products[name]) {
+      document.getElementById("productName").innerText = name;
+      document.getElementById("productPrice").innerText = `₹${products[name].price}`;
+      document.getElementById("productImage").src = products[name].image;
+    }
+
+    // Dummy recommendations (top 3 others)
+    Object.keys(products).slice(0, 3).forEach(p => {
+      if (p === name) return;
+      const item = document.createElement("div");
+      item.className = "flex-none w-56 bg-white rounded shadow p-3 text-center";
+      item.innerHTML = `
+        <a href="product.html?name=${encodeURIComponent(p)}">
+          <img src="${products[p].image}" class="w-full h-36 object-cover rounded mb-2" />
+          <h4 class="text-mad-blue font-semibold">${p}</h4>
+          <p>₹${products[p].price}</p>
+        </a>`;
+      document.getElementById("recommendations").appendChild(item);
+    });
+
+    // Review Submission
+    document.getElementById("reviewForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const name = document.getElementById("reviewerName").value;
+      const text = document.getElementById("reviewText").value;
+      const image = document.getElementById("reviewImage").files[0];
+      const container = document.getElementById("reviewList");
+
+      const review = document.createElement("div");
+      review.className = "p-4 border rounded";
+      review.innerHTML = `<strong>${name}</strong><p>${text}</p>`;
+
+      if (image) {
+        const reader = new FileReader();
+        reader.onload = function () {
+          const img = document.createElement("img");
+          img.src = reader.result;
+          img.className = "w-24 h-24 object-cover rounded mt-2";
+          review.appendChild(img);
+        };
+        reader.readAsDataURL(image);
+      }
+
+      container.appendChild(review);
+      document.getElementById("reviewForm").reset();
+    });
+  </script>
+</body>
+</html>
