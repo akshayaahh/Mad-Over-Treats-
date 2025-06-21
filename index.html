@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mad Over Treats</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Fredoka', sans-serif; }
+    :root {
+      --mad-blue: #12A8C9;
+    }
+    .text-mad-blue { color: var(--mad-blue); }
+    .bg-mad-blue { background-color: var(--mad-blue); }
+    .hover\:bg-mad-blue-dark:hover { background-color: #0f8eb0; }
+  </style>
+</head>
+<body class="bg-blue-50 text-gray-800">
+  <!-- Header -->
+  <header class="bg-white shadow p-4 flex justify-between items-center">
+    <button onclick="toggleMenu()" class="flex items-center space-x-3 focus:outline-none">
+      <img src="logo.png" alt="Mad for Treats Logo" class="w-12 h-12 rounded-full" />
+      <h1 class="text-2xl font-bold text-mad-blue">Mad Over Treats</h1>
+    </button>
+    <a href="login.html" class="text-sm text-mad-blue hover:underline">Sign In</a>
+  </header>
+
+  <!-- Dropdown Menu -->
+  <div id="menu" class="hidden bg-white shadow p-4 m-4 rounded-xl">
+    <ul class="space-y-2 text-mad-blue text-center">
+      <li><a href="orders.html">My Orders</a></li>
+      <li><a href="products.html">All Products</a></li>
+      <li><a href="reviews.html">Customer Reviews</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="text-center py-10 px-4">
+    <h2 class="text-4xl font-bold text-mad-blue mb-4">Homemade Treats, Straight from the Heart</h2>
+    <p class="text-lg text-gray-600">Handcrafted with care in small batches, our dog treats are made with real ingredients you can trust — and tails can’t resist.</p>
+  </section>
+
+  <!-- Specials Slider -->
+  <section class="px-4 pb-8">
+    <h3 class="text-2xl font-bold text-mad-blue mb-4">This Week’s Specials</h3>
+    <div class="flex overflow-x-auto space-x-4 scrollbar-hide">
+      <div class="flex-none w-64 bg-white rounded-xl shadow p-4">
+        <div class="h-40 bg-gray-200 rounded mb-2 flex items-center justify-center">Image 1</div>
+        <h4 class="text-lg font-semibold text-mad-blue">Pumpkin & Oats Biscuits</h4>
+        <p class="text-sm text-gray-500">Crunchy and healthy bites</p>
+        <p class="font-bold mt-1">₹199</p>
+      </div>
+      <div class="flex-none w-64 bg-white rounded-xl shadow p-4">
+        <div class="h-40 bg-gray-200 rounded mb-2 flex items-center justify-center">Image 2</div>
+        <h4 class="text-lg font-semibold text-mad-blue">Banana Chews</h4>
+        <p class="text-sm text-gray-500">Soft, chewy goodness</p>
+        <p class="font-bold mt-1">₹149</p>
+      </div>
+      <div class="flex-none w-64 bg-white rounded-xl shadow p-4">
+        <div class="h-40 bg-gray-200 rounded mb-2 flex items-center justify-center">Image 3</div>
+        <h4 class="text-lg font-semibold text-mad-blue">Sweet Potato Sticks</h4>
+        <p class="text-sm text-gray-500">Natural fiber-rich treat</p>
+        <p class="font-bold mt-1">₹179</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Slider -->
+  <section class="px-4 pb-8">
+    <h3 class="text-2xl font-bold text-mad-blue mb-4">What Our Customers Say</h3>
+    <div class="flex overflow-x-auto space-x-4 scrollbar-hide">
+      <div class="flex-none w-72 bg-white rounded-xl shadow p-4">
+        <p class="text-sm italic">"My golden retriever can't get enough of the Banana Chews! Highly recommend."</p>
+        <p class="mt-2 text-xs text-gray-500">— Aditi R., Bangalore</p>
+      </div>
+      <div class="flex-none w-72 bg-white rounded-xl shadow p-4">
+        <p class="text-sm italic">"Love the clean ingredients. I trust Mad for Treats more than any commercial brand."</p>
+        <p class="mt-2 text-xs text-gray-500">— Rahul M., Mumbai</p>
+      </div>
+      <div class="flex-none w-72 bg-white rounded-xl shadow p-4">
+        <p class="text-sm italic">"Mango is an adorable mascot and I know the treats are Mango-approved!"</p>
+        <p class="mt-2 text-xs text-gray-500">— Sneha D., Pune</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center text-sm text-gray-500 py-6">
+    &copy; 2025 Mad for Treats. All rights reserved.
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('hidden');
+    }
+  </script>
+</body>
+</html>
